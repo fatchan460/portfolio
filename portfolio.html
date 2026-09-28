@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laka Fatchan Mubina | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        bgDark: '#050511',
+                        cardDark: '#0B0D1E',
+                        accentPink: '#FF7EB3',
+                        accentPurple: '#7B2CBF',
+                        accentBlue: '#4361EE',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'card-gradient': 'linear-gradient(145deg, #11142c 0%, #0a0c1b 100%)',
+                        'button-gradient': 'linear-gradient(90deg, #7B2CBF 0%, #FF7EB3 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050511;
+            color: #E2E8F0;
+            overflow-x: hidden;
+        }
+        
+        .glass-card {
+            background: rgba(15, 17, 35, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .blob {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050511;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4361EE;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7B2CBF;
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #7B2CBF, #FF7EB3);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accentPink selection:text-white relative">
+    
+    <!-- Background glow effects -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accentPurple/20 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accentBlue/20 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+
+    <nav class="fixed w-full z-50 glass-card border-b-0 py-4 px-6 md:px-12 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-heading font-bold text-white tracking-wider">LFM<span class="text-accentPink">.</span></a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-accentPink transition-colors">About</a>
+                <a href="#experience" class="hover:text-accentPink transition-colors">Experience</a>
+                <a href="#portfolio" class="hover:text-accentPink transition-colors">Portfolio</a>
+            </div>
+            <a href="mailto:111202113330@mhs.dinus.ac.id" class="hidden md:inline-block px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all text-sm font-semibold">
+                Contact Me
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div class="order-2 md:order-1 flex flex-col space-y-6 text-center md:text-left z-10">
+                <div class="inline-block px-4 py-2 rounded-full glass-card border border-accentPurple/30 text-accentPink text-xs font-semibold tracking-widest uppercase w-max mx-auto md:mx-0">
+                    Portfolio
+                </div>
+                <h1 class="text-5xl md:text-7xl font-heading font-bold leading-tight">
+                    Hey There, <br>
+                    I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple via-accentPink to-orange-400">Laka Fatchan.</span>
+                </h1>
+                
+                <p class="text-gray-400 text-lg md:text-xl font-light max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    A passionate <span class="font-medium text-white">Website & Android Developer</span> crafting scalable solutions and engaging user experiences from <span class="font-medium text-white">Semarang, Indonesia</span>.
+                </p>
+                
+                <div class="flex items-center justify-center md:justify-start space-x-4 pt-4">
+                    <a href="https://github.com/fatchan460" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-accentPurple/30 transition-all group">
+                        <i class="fa-brands fa-github text-xl text-gray-300 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/fatchan-" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-accentBlue/30 transition-all group">
+                        <i class="fa-brands fa-linkedin-in text-xl text-gray-300 group-hover:text-white"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="order-1 md:order-2 relative flex justify-center z-10">
+                <div class="relative w-72 h-72 md:w-[450px] md:h-[450px]">
+                    <div class="absolute inset-0 bg-button-gradient opacity-30 blob blur-2xl"></div>
+                    <div class="absolute inset-0 bg-[#0B0D1E] blob border-4 border-white/5 overflow-hidden flex items-center justify-center z-10">
+                        <img src="https://placehold.co/500x500/1e1e38/ffffff?text=Laka+Fatchan" alt="Laka Fatchan Mubina" class="w-full h-full object-cover mix-blend-lighten">
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -left-6 top-1/4 glass-card px-4 py-2 rounded-xl border border-white/10 z-20 flex items-center space-x-2 animate-bounce" style="animation-duration: 3s;">
+                        <i class="fa-brands fa-android text-green-400"></i>
+                        <span class="text-xs font-semibold">Android Dev</span>
+                    </div>
+                    <div class="absolute -right-4 bottom-1/4 glass-card px-4 py-2 rounded-xl border border-white/10 z-20 flex items-center space-x-2 animate-bounce" style="animation-duration: 4s; animation-delay: 1s;">
+                        <i class="fa-solid fa-code text-accentPink"></i>
+                        <span class="text-xs font-semibold">Full-Stack</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-white">About <span class="text-accentPink">Me</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Main About Card -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-8 border border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accentBlue/10 rounded-full blur-3xl group-hover:bg-accentBlue/20 transition-all duration-700"></div>
+                    <h3 class="text-2xl font-semibold mb-4">Bridging Design & Logic</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        I am a professional Website & Android Developer with robust full-stack experience. I specialize in building scalable, cross-platform applications from the ground up. Whether it's designing intricate system architectures using PHP, Laravel, and NestJS, or crafting seamless user interfaces with React, Kotlin, and Flutter, I focus on delivering creative and optimal solutions to modern tech challenges.
+                    </p>
+                    <div class="mt-8">
+                        <a href="#" class="inline-flex items-center text-accentPink font-medium hover:text-white transition-colors">
+                            Download CV <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact CTA Card -->
+                <div class="glass-card rounded-3xl p-8 border border-white/5 bg-button-gradient relative overflow-hidden flex flex-col justify-center items-center text-center">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-white mb-4">Start a Project?</h3>
+                        <p class="text-white/80 mb-6 text-sm">Let's build something extraordinary together.</p>
+                        <a href="mailto:111202113330@mhs.dinus.ac.id" class="px-6 py-3 bg-white text-gray-900 rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-lg shadow-black/20">
+                            Let's Talk
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tech Stack Card -->
+                <div class="md:col-span-3 glass-card rounded-3xl p-8 border border-white/5">
+                    <h3 class="text-lg font-semibold mb-6 text-center text-gray-300">My Technology Stack</h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-php text-[#777BB4]"></i> <span>PHP</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-laravel text-[#FF2D20]"></i> <span>Laravel</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-react text-[#61DAFB]"></i> <span>React</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin_Icon.png" class="w-4 h-4 object-contain" alt="Kotlin"> <span>Kotlin</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-js text-[#F7DF1E]"></i> <span>NestJS</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-solid fa-mobile-screen text-[#02569B]"></i> <span>Flutter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 px-6 bg-[#070814] relative border-y border-white/5">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-white">Work <span class="text-accentBlue">Experiences</span></h2>
+            
+            <div class="relative timeline-line pl-8 md:pl-0">
+                <!-- Timeline Item 1 -->
+                <div class="mb-12 relative md:w-1/2 md:pr-12 md:ml-0 md:text-right">
+                    <div class="absolute left-[-37px] md:right-[-42px] md:left-auto top-1 w-6 h-6 rounded-full bg-[#070814] border-4 border-accentPink flex items-center justify-center z-10 shadow-[0_0_15px_rgba(255,126,179,0.5)]"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/5 hover:border-accentPink/30 transition-colors">
+                        <span class="text-accentPink text-sm font-semibold tracking-wider">Apr 2025 - Sep 2026</span>
+                        <h3 class="text-xl font-bold mt-1 text-white">Web Developer</h3>
+                        <h4 class="text-gray-400 text-sm mb-4">Depo Digi (IT Company)</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed text-left md:text-right">
+                            Developed full-stack admin systems using React and NestJS. Managed large-scale deployment of 70+ company profile websites. Built Point of Sales (POS) systems and crafted initial UI/UX designs for web applications, ensuring high industry security standards.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="mb-12 relative md:w-1/2 md:pl-12 md:ml-auto">
+                    <div class="absolute left-[-37px] md:left-[-11px] top-1 w-6 h-6 rounded-full bg-[#070814] border-4 border-accentPurple flex items-center justify-center z-10 shadow-[0_0_15px_rgba(123,44,191,0.5)]"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/5 hover:border-accentPurple/30 transition-colors">
+                        <span class="text-accentPurple text-sm font-semibold tracking-wider">Aug 2024 - Sep 2024</span>
+                        <h3 class="text-xl font-bold mt-1 text-white">Web Developer (Intern)</h3>
+                        <h4 class="text-gray-400 text-sm mb-4">Pemerintah Kota Semarang</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Optimized public services by developing new functional web features, reducing bureaucratic delays. Analyzed system requirements, standardized codebases, and implemented strict data security measures aligned with government regulations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="mb-12 relative md:w-1/2 md:pr-12 md:ml-0 md:text-right">
+                    <div class="absolute left-[-37px] md:right-[-42px] md:left-auto top-1 w-6 h-6 rounded-full bg-[#070814] border-4 border-accentBlue flex items-center justify-center z-10 shadow-[0_0_15px_rgba(67,97,238,0.5)]"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/5 hover:border-accentBlue/30 transition-colors">
+                        <span class="text-accentBlue text-sm font-semibold tracking-wider">Jun 2024</span>
+                        <h3 class="text-xl font-bold mt-1 text-white">Android Developer</h3>
+                        <h4 class="text-gray-400 text-sm mb-4">RempahRia (Bangkit Capstone)</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed text-left md:text-right">
+                            Engineered an end-to-end Android application facilitating local spice data processing. Integrated external APIs seamlessly and elevated mobile application security standards while optimizing the User Experience (UX).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Hack for centering timeline line on desktop -->
+            <style>
+                @media (min-width: 768px) {
+                    .timeline-line::before { left: 50%; transform: translateX(-50%); }
+                }
+            </style>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-accentPurple text-sm font-bold tracking-widest uppercase">Latest Works</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mt-2 text-white">My <span class="text-accentPink">Portfolio</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-accentPink/30 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="https://placehold.co/800x600/11142c/ffffff?text=RempahRia+App" alt="RempahRia Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Android</span>
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Kotlin</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accentPink transition-colors">RempahRia</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">An Android application built during Bangkit Academy to facilitate local spice data processing and empower local farmers.</p>
+                        <a href="https://github.com/rifkydelta/RempahRia" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors">
+                            View on GitHub <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-accentBlue/30 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="https://placehold.co/800x600/11142c/ffffff?text=Depo+Material" alt="Depo Material Web" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Web Platform</span>
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Full-Stack</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accentBlue transition-colors">Depo Material</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">A comprehensive web platform and POS system developed for PT Tunas Baja Nindia Perkasa to digitalize product orders and inventory.</p>
+                        <a href="https://depomaterial.com" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors">
+                            Visit Website <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-accentPurple/30 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="https://placehold.co/800x600/11142c/ffffff?text=BRIDA+Semarang" alt="BRIDA Semarang Web" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Government Web</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accentPurple transition-colors">BRIDA Kota Semarang</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">Official web portal for Badan Riset dan Inovasi Daerah (BRIDA) of Semarang City, designed to optimize public information delivery.</p>
+                        <a href="https://www.brida.semarangkota.go.id" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors">
+                            Visit Website <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-orange-500/30 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="https://placehold.co/800x600/11142c/ffffff?text=Hukrim+Nusantara" alt="Hukrim Nusantara" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">News Portal</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">Hukrim Nusantara</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">A digital news and media platform focused on law and criminal news coverage across the archipelago.</p>
+                        <a href="https://hukrimnusantara.com" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors">
+                            Visit Website <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="mt-20 border-t border-white/5 relative overflow-hidden bg-[#070814]">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-accentPink to-transparent opacity-50"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 py-16">
+            <div class="glass-card rounded-3xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between bg-card-gradient border border-white/10">
+                <div class="text-center md:text-left mb-8 md:mb-0">
+                    <h2 class="text-2xl md:text-4xl font-heading font-bold text-white mb-2">Let's create something <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple to-accentPink">amazing together</span></h2>
+                    <p class="text-gray-400 text-sm max-w-md">Currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                </div>
+                <a href="mailto:111202113330@mhs.dinus.ac.id" class="flex items-center justify-center px-8 py-4 bg-white text-gray-900 rounded-full font-bold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    Say Hello <i class="fa-regular fa-paper-plane ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="mt-16 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Laka Fatchan Mubina. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="https://github.com/fatchan460" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+                    <a href="https://www.linkedin.com/in/fatchan-" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
