@@ -1,229 +1,364 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laka Fatchan Mubina - Portfolio</title>
+    <title>Laka Fatchan Mubina | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        bgDark: '#050511',
+                        cardDark: '#0B0D1E',
+                        accentPink: '#FF7EB3',
+                        accentPurple: '#7B2CBF',
+                        accentBlue: '#4361EE',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'card-gradient': 'linear-gradient(145deg, #11142c 0%, #0a0c1b 100%)',
+                        'button-gradient': 'linear-gradient(90deg, #7B2CBF 0%, #FF7EB3 100%)',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #060913; /* Deep dark blue */
-            color: #ffffff;
+            background-color: #050511;
+            color: #E2E8F0;
+            overflow-x: hidden;
         }
-        .gradient-text {
-            background: linear-gradient(to right, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 17, 35, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        .blob {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+        }
+
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #060913; }
-        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ec4899; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050511;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4361EE;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7B2CBF;
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #7B2CBF, #FF7EB3);
+        }
+
+        /* Modal Styles */
+        .modal-active {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-fuchsia-500 selection:text-white">
+<body class="antialiased selection:bg-accentPink selection:text-white relative">
+    
+    <!-- Background glow effects -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accentPurple/20 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accentBlue/20 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-card border-b-0 border-white/10 py-4 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-wider">FATCHAN<span class="text-fuchsia-500">.</span></a>
+    <nav class="fixed w-full z-40 glass-card border-b-0 py-4 px-6 md:px-12 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-heading font-bold text-white tracking-wider">LFM<span class="text-accentPink">.</span></a>
             <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#experience" class="hover:text-white transition">Experience</a>
-                <a href="#portfolio" class="hover:text-white transition">Portfolio</a>
-                <a href="#reviews" class="hover:text-white transition">Reviews</a>
+                <a href="#about" class="hover:text-accentPink transition-colors">About</a>
+                <a href="#experience" class="hover:text-accentPink transition-colors">Experience</a>
+                <a href="#portfolio" class="hover:text-accentPink transition-colors">Portfolio</a>
+                <a href="#reviews" class="hover:text-accentPink transition-colors">Reviews</a>
             </div>
-            <a href="https://github.com/fatchan460" target="_blank" class="px-5 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm font-semibold transition">GitHub</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6 max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between min-h-screen">
-        <div class="w-full md:w-1/2 mt-12 md:mt-0 space-y-6">
-            <p class="text-fuchsia-400 font-semibold tracking-wide">Hey There,</p>
-            <h1 class="text-5xl md:text-7xl font-bold leading-tight">
-                I'm Laka <br> Fatchan Mubina
-            </h1>
-            <p class="text-gray-400 text-lg max-w-md">
-                Website & Android Developer dengan spesialisasi dalam membangun arsitektur sistem full-stack lintas platform yang kreatif dan skalabel.
-            </p>
-            <div class="flex space-x-4 pt-4">
-                <!-- Tombol Download CV berfungsi mengunduh file -->
-                <a href="LAKA FATCHAN MUBINA CV.pdf" download="CV_Laka_Fatchan_Mubina.pdf" class="px-8 py-3 bg-gradient-to-r from-fuchsia-600 to-purple-600 rounded-full font-semibold hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transition-all">
-                    Download CV
-                </a>
-                <a href="#portfolio" class="px-8 py-3 glass-card rounded-full font-semibold hover:bg-white/10 transition-all">
-                    View Work
-                </a>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2 flex justify-center md:justify-end relative">
-            <div class="absolute w-72 h-72 bg-fuchsia-600/30 rounded-full blur-3xl -z-10"></div>
-            <!-- Menggunakan foto profil yang disediakan -->
-            <img src="profile fix.jpg" alt="Laka Fatchan Mubina" class="w-72 md:w-96 rounded-3xl object-cover shadow-2xl border border-white/10 z-10 relative bg-black">
-        </div>
-    </section>
-
-    <!-- About Me -->
-    <section id="about" class="py-20 px-6 bg-[#0a0e1a]">
-        <div class="max-w-4xl mx-auto text-center space-y-8">
-            <h2 class="text-3xl font-bold mb-10">About Me</h2>
-            <p class="text-gray-400 leading-relaxed text-lg">
-                Saya adalah mahasiswa Teknik Informatika di Universitas Dian Nuswantoro Semarang yang memiliki passion mendalam terhadap pengembangan perangkat lunak. Berpengalaman profesional di Depo Digi dan berpartisipasi dalam Bangkit Academy (Mobile Development Cohort). Saya terbiasa menggunakan ekosistem teknologi modern seperti PHP, Java, Kotlin, Flutter, React, dan NestJS untuk membangun solusi yang berdampak nyata.
-            </p>
-        </div>
-    </section>
-
-    <!-- Work Experiences -->
-    <section id="experience" class="py-20 px-6 max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 text-center">Work Experiences</h2>
-        <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-bTentu, saya telah memperbarui dan melengkapi kode HTML website portofolio Anda sesuai dengan permintaan. 
-
-Pembaruan yang dilakukan meliputi:
-1. **Foto Profil:** Menggunakan `profile fix.jpg`.
-2. **Download CV:** Tombol diubah agar mengunduh file `LAKA FATCHAN MUBINA CV.pdf` secara langsung saat diklik.
-3. **Portofolio & Thumbnail:** Menambahkan 4 proyek Anda (RempahRia, Depo Material, BRIDA Kota Semarang, Hukrim Nusantara) dengan thumbnail gambar yang sesuai.
-4. **Detail Halaman Portofolio:** Saya menambahkan fitur **Modal (Pop-up)**. Ketika salah satu portofolio diklik, akan muncul jendela pop-up yang menjabarkan detail proyek tersebut.
-5. **Section Reviews:** Menambahkan bagian testimoni/penilaian *dummy* dari klien.
-
-Berikut adalah kode lengkapnya. Anda bisa menyalin semua kode ini dan mengganti seluruh isi file `index.html` Anda sebelumnya:
-
-```html
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laka Fatchan Mubina - Portfolio</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <style>
-        body {
-            background-color: #0B0E14; /* Dark theme */
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
-</head>
-<body class="antialiased selection:bg-purple-500 selection:text-white">
-
-    <!-- Navbar -->
-    <nav class="fixed w-full z-40 top-0 glass-card">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-wider">Laka<span class="text-purple-500">.dev</span></a>
-            <div class="hidden md:flex space-x-8 text-sm text-gray-300">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#experience" class="hover:text-white transition">Experience</a>
-                <a href="#portfolio" class="hover:text-white transition">Portfolio</a>
-                <a href="#reviews" class="hover:text-white transition">Reviews</a>
-            </div>
-            <!-- Tombol Download CV -->
-            <a href="LAKA FATCHAN MUBINA CV.pdf" download="LAKA_FATCHAN_MUBINA_CV.pdf" class="bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition shadow-lg shadow-purple-500/30">
-                Download CV
+            <a href="mailto:111202113330@mhs.dinus.ac.id" class="hidden md:inline-block px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all text-sm font-semibold">
+                Contact Me
             </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="pt-32 pb-20 px-4">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-            <div class="md:w-1/2 space-y-6">
-                <h2 class="text-gray-400 font-medium tracking-widest uppercase">Welcome to my universe</h2>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight">
-                    Hey There, <br> I'm <span class="gradient-text">Laka Fatchan</span>!
+    <section class="relative min-h-screen flex items-center justify-center pt-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div class="order-2 md:order-1 flex flex-col space-y-6 text-center md:text-left z-10">
+                <div class="inline-block px-4 py-2 rounded-full glass-card border border-accentPurple/30 text-accentPink text-xs font-semibold tracking-widest uppercase w-max mx-auto md:mx-0">
+                    Portfolio
+                </div>
+                <h1 class="text-5xl md:text-7xl font-heading font-bold leading-tight">
+                    Hey There, <br>
+                    I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple via-accentPink to-orange-400">Laka Fatchan.</span>
                 </h1>
-                <p class="text-gray-400 text-lg max-w-md leading-relaxed">
-                    Website & Android Developer dengan pengalaman dalam merancang, mengembangkan, dan mengelola aplikasi lintas platform menggunakan arsitektur modern (Full-stack).
+                
+                <p class="text-gray-400 text-lg md:text-xl font-light max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    A passionate <span class="font-medium text-white">Website & Android Developer</span> crafting scalable solutions and engaging user experiences from <span class="font-medium text-white">Semarang, Indonesia</span>.
                 </p>
-                <div class="flex gap-4 pt-4">
-                    <a href="[https://github.com/fatchan460](https://github.com/fatchan460)" target="_blank" class="glass-card p-3 rounded-full hover:bg-white/10 transition">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                
+                <div class="flex items-center justify-center md:justify-start space-x-4 pt-4">
+                    <a href="https://github.com/fatchan460" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-accentPurple/30 transition-all group">
+                        <i class="fa-brands fa-github text-xl text-gray-300 group-hover:text-white"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/fatchan-" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center hover:bg-accentBlue/30 transition-all group">
+                        <i class="fa-brands fa-linkedin-in text-xl text-gray-300 group-hover:text-white"></i>
                     </a>
                 </div>
             </div>
-            <div class="md:w-1/2 flex justify-center relative">
-                <!-- Blob effect background -->
-                <div class="absolute w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-                <div class="absolute w-72 h-72 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000 right-0"></div>
-                <!-- Profile Image -->
-                <img src="profile fix.jpg" alt="Laka Fatchan Mubina" class="relative z-10 w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-purple-500/30 shadow-2xl">
+
+            <div class="order-1 md:order-2 relative flex justify-center z-10">
+                <div class="relative w-72 h-72 md:w-[450px] md:h-[450px]">
+                    <div class="absolute inset-0 bg-button-gradient opacity-30 blob blur-2xl"></div>
+                    <div class="absolute inset-0 bg-[#0B0D1E] blob border-4 border-white/5 overflow-hidden flex items-center justify-center z-10">
+                        <!-- Integrasi Foto Profil -->
+                        <img src="profile fix.jpg" alt="Laka Fatchan Mubina" class="w-full h-full object-cover mix-blend-lighten">
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -left-6 top-1/4 glass-card px-4 py-2 rounded-xl border border-white/10 z-20 flex items-center space-x-2 animate-bounce" style="animation-duration: 3s;">
+                        <i class="fa-brands fa-android text-green-400"></i>
+                        <span class="text-xs font-semibold">Android Dev</span>
+                    </div>
+                    <div class="absolute -right-4 bottom-1/4 glass-card px-4 py-2 rounded-xl border border-white/10 z-20 flex items-center space-x-2 animate-bounce" style="animation-duration: 4s; animation-delay: 1s;">
+                        <i class="fa-solid fa-code text-accentPink"></i>
+                        <span class="text-xs font-semibold">Full-Stack</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-[#06080e]">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-16">My <span class="gradient-text">Portfolio</span></h2>
+    <section id="about" class="py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-white">About <span class="text-accentPink">Me</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Main About Card -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-8 border border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accentBlue/10 rounded-full blur-3xl group-hover:bg-accentBlue/20 transition-all duration-700"></div>
+                    <h3 class="text-2xl font-semibold mb-4">Bridging Design & Logic</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        I am a professional Website & Android Developer with robust full-stack experience. I specialize in building scalable, cross-platform applications from the ground up. Whether it's designing intricate system architectures using PHP, Laravel, and NestJS, or crafting seamless user interfaces with React, Kotlin, and Flutter, I focus on delivering creative and optimal solutions to modern tech challenges.
+                    </p>
+                    <div class="mt-8">
+                        <!-- Integrasi Download CV -->
+                        <a href="LAKA FATCHAN MUBINA CV.pdf" download="LAKA_FATCHAN_MUBINA_CV.pdf" class="inline-flex items-center text-accentPink font-medium hover:text-white transition-colors">
+                            Download CV <i class="fa-solid fa-download ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact CTA Card -->
+                <div class="glass-card rounded-3xl p-8 border border-white/5 bg-button-gradient relative overflow-hidden flex flex-col justify-center items-center text-center">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-white mb-4">Start a Project?</h3>
+                        <p class="text-white/80 mb-6 text-sm">Let's build something extraordinary together.</p>
+                        <a href="mailto:111202113330@mhs.dinus.ac.id" class="px-6 py-3 bg-white text-gray-900 rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-lg shadow-black/20">
+                            Let's Talk
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tech Stack Card -->
+                <div class="md:col-span-3 glass-card rounded-3xl p-8 border border-white/5">
+                    <h3 class="text-lg font-semibold mb-6 text-center text-gray-300">My Technology Stack</h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-php text-[#777BB4]"></i> <span>PHP</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-laravel text-[#FF2D20]"></i> <span>Laravel</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-react text-[#61DAFB]"></i> <span>React</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin_Icon.png" class="w-4 h-4 object-contain" alt="Kotlin"> <span>Kotlin</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-brands fa-js text-[#F7DF1E]"></i> <span>NestJS</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5">
+                            <i class="fa-solid fa-mobile-screen text-[#02569B]"></i> <span>Flutter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 px-6 bg-[#070814] relative border-y border-white/5">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-16 text-white">Work <span class="text-accentBlue">Experiences</span></h2>
+            
+            <div class="relative timeline-line pl-8 md:pl-0">
+                <!-- Timeline Item 1 -->
+                <div class="mb-12 relative md:w-1/2 md:pr-12 md:ml-0 md:text-right">
+                    <div class="absolute left-[-37px] md:right-[-42px] md:left-auto top-1 w-6 h-6 rounded-full bg-[#070814] border-4 border-accentPink flex items-center justify-center z-10 shadow-[0_0_15px_rgba(255,126,179,0.5)]"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/5 hover:border-accentPink/30 transition-colors">
+                        <span class="text-accentPink text-sm font-semibold tracking-wider">Apr 2025 - Sep 2026</span>
+                        <h3 class="text-xl font-bold mt-1 text-white">Web Developer</h3>
+                        <h4 class="text-gray-400 text-sm mb-4">Depo Digi (IT Company)</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed text-left md:text-right">
+                            Developed full-stack admin systems using React and NestJS. Managed large-scale deployment of 70+ company profile websites. Built Point of Sales (POS) systems and crafted initial UI/UX designs for web applications, ensuring high industry security standards.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="mb-12 relative md:w-1/2 md:pl-12 md:ml-auto">
+                    <div class="absolute left-[-37px] md:left-[-11px] top-1 w-6 h-6 rounded-full bg-[#070814] border-4 border-accentPurple flex items-center justify-center z-10 shadow-[0_0_15px_rgba(123,44,191,0.5)]"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/5 hover:border-accentPurple/30 transition-colors">
+                        <span class="text-accentPurple text-sm font-semibold tracking-wider">Aug 2024 - Sep 2024</span>
+                        <h3 class="text-xl font-bold mt-1 text-white">Web Developer (Intern)</h3>
+                        <h4 class="text-gray-400 text-sm mb-4">Pemerintah Kota Semarang</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Optimized public services by developing new functional web features, reducing bureaucratic delays. Analyzed system requirements, standardized codebases, and implemented strict data security measures aligned with government regulations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="mb-12 relative md:w-1/2 md:pr-12 md:ml-0 md:text-right">
+                    <div class="absolute left-[-37px] md:right-[-42px] md:left-auto top-1 w-6 h-6 rounded-full bg-[#070814] border-4 border-accentBlue flex items-center justify-center z-10 shadow-[0_0_15px_rgba(67,97,238,0.5)]"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/5 hover:border-accentBlue/30 transition-colors">
+                        <span class="text-accentBlue text-sm font-semibold tracking-wider">Jun 2024</span>
+                        <h3 class="text-xl font-bold mt-1 text-white">Android Developer</h3>
+                        <h4 class="text-gray-400 text-sm mb-4">RempahRia (Bangkit Capstone)</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed text-left md:text-right">
+                            Engineered an end-to-end Android application facilitating local spice data processing. Integrated external APIs seamlessly and elevated mobile application security standards while optimizing the User Experience (UX).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Hack for centering timeline line on desktop -->
+            <style>
+                @media (min-width: 768px) {
+                    .timeline-line::before { left: 50%; transform: translateX(-50%); }
+                }
+            </style>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-accentPurple text-sm font-bold tracking-widest uppercase">Latest Works</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mt-2 text-white">My <span class="text-accentPink">Portfolio</span></h2>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
                 <!-- Project 1: RempahRia -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer hover:-translate-y-2 transition duration-300" onclick="openModal('modal-rempahria')">
-                    <div class="h-48 overflow-hidden bg-gray-800">
-                        <img src="341654423-19db733d-512c-4aff-b28b-cf70ef697cb3.jpg" alt="RempahRia" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-accentPink/30 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="openModal('modal-rempahria')">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="341654423-19db733d-512c-4aff-b28b-cf70ef697cb3.jpg" alt="RempahRia Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2 z-10">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Android</span>
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Kotlin</span>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-purple-400 bg-purple-900/30 px-2 py-1 rounded">Android / Machine Learning</span>
-                        <h3 class="text-xl font-bold mt-3 mb-2">RempahRia App</h3>
-                        <p class="text-gray-400 text-sm mb-4">Aplikasi Android cerdas untuk mendeteksi berbagai jenis rempah lokal Indonesia menggunakan Deep Learning.</p>
-                        <span class="text-purple-400 text-sm font-medium flex items-center">Lihat Detail &rarr;</span>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accentPink transition-colors">RempahRia</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">An Android application built during Bangkit Academy to facilitate local spice data processing and empower local farmers.</p>
+                        <button class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors pointer-events-none">
+                            Lihat Detail <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Project 2: Depo Material -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer hover:-translate-y-2 transition duration-300" onclick="openModal('modal-depo')">
-                    <div class="h-48 overflow-hidden bg-gray-800">
-                        <img src="Screenshot 2026-09-29 125225.jpg" alt="Depo Material" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-accentBlue/30 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="openModal('modal-depo')">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="Screenshot 2026-09-29 125225.jpg" alt="Depo Material Web" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2 z-10">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Web Platform</span>
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Full-Stack</span>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-pink-400 bg-pink-900/30 px-2 py-1 rounded">Web Development / B2B E-Commerce</span>
-                        <h3 class="text-xl font-bold mt-3 mb-2">Depo Material</h3>
-                        <p class="text-gray-400 text-sm mb-4">Platform distributor besi baja terbesar. Sistem pemesanan produk dan manajemen inventaris material.</p>
-                        <span class="text-pink-400 text-sm font-medium flex items-center">Lihat Detail &rarr;</span>
-                    </div>
-                </div>
-
-                <!-- Project 3: BRIDA Semarang -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer hover:-translate-y-2 transition duration-300" onclick="openModal('modal-brida')">
-                    <div class="h-48 overflow-hidden bg-gray-800">
-                        <img src="Screenshot 2026-09-29 124853.jpg" alt="BRIDA Semarang" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-blue-400 bg-blue-900/30 px-2 py-1 rounded">Government / Web Platform</span>
-                        <h3 class="text-xl font-bold mt-3 mb-2">BRIDA Kota Semarang</h3>
-                        <p class="text-gray-400 text-sm mb-4">Sistem informasi untuk Badan Riset dan Inovasi Daerah Kota Semarang guna mendukung digitalisasi layanan publik.</p>
-                        <span class="text-blue-400 text-sm font-medium flex items-center">Lihat Detail &rarr;</span>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accentBlue transition-colors">Depo Material</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">A comprehensive web platform and POS system developed for PT Tunas Baja Nindia Perkasa to digitalize product orders and inventory.</p>
+                        <button class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors pointer-events-none">
+                            Lihat Detail <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Project 4: Hukrim Nusantara -->
-                <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer hover:-translate-y-2 transition duration-300" onclick="openModal('modal-hukrim')">
-                    <div class="h-48 overflow-hidden bg-gray-800">
-                        <img src="Screenshot 2026-09-29 125108.jpg" alt="Hukrim Nusantara" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <!-- Project 3: BRIDA -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-accentPurple/30 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="openModal('modal-brida')">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="Screenshot 2026-09-29 124853.jpg" alt="BRIDA Semarang Web" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2 z-10">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">Government Web</span>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-red-400 bg-red-900/30 px-2 py-1 rounded">News Portal / Full-stack</span>
-                        <h3 class="text-xl font-bold mt-3 mb-2">Hukrim Nusantara</h3>
-                        <p class="text-gray-400 text-sm mb-4">Portal berita digital terkini yang berfokus pada informasi hukum dan kriminalitas di Indonesia.</p>
-                        <span class="text-red-400 text-sm font-medium flex items-center">Lihat Detail &rarr;</span>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accentPurple transition-colors">BRIDA Kota Semarang</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">Official web portal for Badan Riset dan Inovasi Daerah (BRIDA) of Semarang City, designed to optimize public information delivery.</p>
+                        <button class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors pointer-events-none">
+                            Lihat Detail <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: Hukrim -->
+                <div class="glass-card rounded-2xl overflow-hidden group border border-white/5 hover:border-orange-500/30 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="openModal('modal-hukrim')">
+                    <div class="relative h-64 overflow-hidden bg-gray-900">
+                        <img src="Screenshot 2026-09-29 125108.jpg" alt="Hukrim Nusantara" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B0D1E] to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 flex gap-2 z-10">
+                            <span class="bg-black/50 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full border border-white/10 text-white">News Portal</span>
+                        </div>
+                    </div>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">Hukrim Nusantara</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-2">A digital news and media platform focused on law and criminal news coverage across the archipelago.</p>
+                        <button class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-colors pointer-events-none">
+                            Lihat Detail <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -232,51 +367,54 @@ Berikut adalah kode lengkapnya. Anda bisa menyalin semua kode ini dan mengganti 
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="py-20 px-4">
+    <section id="reviews" class="py-24 px-6 relative z-10 bg-[#070814] border-t border-white/5">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-16">Happy <span class="gradient-text">Partners</span></h2>
+            <div class="text-center mb-16">
+                <span class="text-accentBlue text-sm font-bold tracking-widest uppercase">Client Feedback</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mt-2 text-white">Happy <span class="text-accentPink">Partners</span></h2>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Review 1 -->
-                <div class="glass-card p-6 rounded-2xl relative">
-                    <div class="text-purple-500 text-4xl absolute top-4 right-4">"</div>
-                    <p class="text-gray-300 text-sm italic mb-6 relative z-10">
+                <div class="glass-card p-8 rounded-2xl relative border border-white/5">
+                    <i class="fa-solid fa-quote-right text-4xl text-accentPurple/20 absolute top-6 right-6"></i>
+                    <p class="text-gray-300 text-sm italic mb-8 relative z-10">
                         "Laka adalah developer yang luar biasa! Aplikasi Bangkit Capstone kami (RempahRia) sukses besar berkat dedikasi dan keahlian teknisnya dalam integrasi Android."
                     </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center font-bold">R</div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-accentPurple to-accentPink flex items-center justify-center font-bold text-white">R</div>
                         <div>
-                            <h4 class="font-bold text-sm">Rifky Delta</h4>
+                            <h4 class="font-bold text-sm text-white">Rifky Delta</h4>
                             <p class="text-xs text-gray-500">Project Manager, RempahRia</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Review 2 -->
-                <div class="glass-card p-6 rounded-2xl relative">
-                    <div class="text-pink-500 text-4xl absolute top-4 right-4">"</div>
-                    <p class="text-gray-300 text-sm italic mb-6 relative z-10">
+                <div class="glass-card p-8 rounded-2xl relative border border-white/5">
+                    <i class="fa-solid fa-quote-right text-4xl text-accentPink/20 absolute top-6 right-6"></i>
+                    <p class="text-gray-300 text-sm italic mb-8 relative z-10">
                         "Sistem B2B dan POS Depo Material berjalan sangat optimal. Penjualan material besi baja kami jauh lebih termonitor dengan akurat sekarang."
                     </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-red-500 flex items-center justify-center font-bold">PT</div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-accentPink to-orange-400 flex items-center justify-center font-bold text-white">PT</div>
                         <div>
-                            <h4 class="font-bold text-sm">Tunas Baja Nindia Perkasa</h4>
+                            <h4 class="font-bold text-sm text-white">Tunas Baja Nindia Perkasa</h4>
                             <p class="text-xs text-gray-500">Direktur Operasional</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Review 3 -->
-                <div class="glass-card p-6 rounded-2xl relative">
-                    <div class="text-blue-500 text-4xl absolute top-4 right-4">"</div>
-                    <p class="text-gray-300 text-sm italic mb-6 relative z-10">
+                <div class="glass-card p-8 rounded-2xl relative border border-white/5">
+                    <i class="fa-solid fa-quote-right text-4xl text-accentBlue/20 absolute top-6 right-6"></i>
+                    <p class="text-gray-300 text-sm italic mb-8 relative z-10">
                         "Proses digitalisasi layanan publik melalui platform web BRIDA sangat terbantu. Kolaborasinya proaktif, responsif, dan hasilnya sesuai regulasi."
                     </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 flex items-center justify-center font-bold">B</div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-accentBlue to-cyan-400 flex items-center justify-center font-bold text-white">B</div>
                         <div>
-                            <h4 class="font-bold text-sm">Tim IT BRIDA</h4>
+                            <h4 class="font-bold text-sm text-white">Tim IT BRIDA</h4>
                             <p class="text-xs text-gray-500">Pemkot Semarang</p>
                         </div>
                     </div>
@@ -285,118 +423,145 @@ Berikut adalah kode lengkapnya. Anda bisa menyalin semua kode ini dan mengganti 
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="glass-card mt-20 border-t-0 border-b-0 border-x-0 border-t-white/10 text-center py-8">
-        <p class="text-gray-500 text-sm">© 2026 Laka Fatchan Mubina. All rights reserved.</p>
+    <footer class="border-t border-white/5 relative overflow-hidden bg-[#070814]">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-accentPink to-transparent opacity-50"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 py-16">
+            <div class="glass-card rounded-3xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between bg-card-gradient border border-white/10">
+                <div class="text-center md:text-left mb-8 md:mb-0">
+                    <h2 class="text-2xl md:text-4xl font-heading font-bold text-white mb-2">Let's create something <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple to-accentPink">amazing together</span></h2>
+                    <p class="text-gray-400 text-sm max-w-md">Currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                </div>
+                <a href="mailto:111202113330@mhs.dinus.ac.id" class="flex items-center justify-center px-8 py-4 bg-white text-gray-900 rounded-full font-bold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    Say Hello <i class="fa-regular fa-paper-plane ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="mt-16 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Laka Fatchan Mubina. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="https://github.com/fatchan460" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+                    <a href="https://www.linkedin.com/in/fatchan-" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- ================= MODALS SECTION ================= -->
-
     <!-- Modal: RempahRia -->
-    <div id="modal-rempahria" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-[#0B0E14] border border-gray-800 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl">
-            <button onclick="closeModal('modal-rempahria')" class="absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 rounded-full p-2 text-white z-10">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="modal-rempahria" class="opacity-0 pointer-events-none fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 transition-all duration-300 backdrop-blur-sm">
+        <div class="bg-[#0B0D1E] border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl transform scale-95 transition-transform duration-300" id="modal-rempahria-content">
+            <button onclick="closeModal('modal-rempahria')" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 rounded-full w-8 h-8 flex items-center justify-center text-white z-10 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-            <img src="341654423-19db733d-512c-4aff-b28b-cf70ef697cb3.jpg" class="w-full h-64 object-cover">
+            <img src="341654423-19db733d-512c-4aff-b28b-cf70ef697cb3.jpg" class="w-full h-64 object-cover border-b border-white/5">
             <div class="p-8">
-                <h2 class="text-2xl font-bold mb-2">RempahRia (Bangkit Capstone)</h2>
-                <p class="text-purple-400 mb-6 font-medium">Android Developer</p>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                <h2 class="text-2xl font-bold mb-2 text-white">RempahRia (Bangkit Capstone)</h2>
+                <p class="text-accentPink mb-6 font-medium text-sm">Android Developer</p>
+                <p class="text-gray-300 text-sm leading-relaxed mb-8">
                     Membangun aplikasi Android end-to-end untuk memfasilitasi identifikasi dan pengolahan data rempah lokal Indonesia. 
                     Mengintegrasikan teknologi deteksi objek berbasis Deep Learning menggunakan kamera smartphone, serta mengelola UI/UX yang responsif.
                 </p>
-                <div class="flex gap-4">
-                    <a href="[https://github.com/rifkydelta/RempahRia](https://github.com/rifkydelta/RempahRia)" target="_blank" class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg text-sm font-semibold transition">View Repository</a>
-                </div>
+                <a href="https://github.com/rifkydelta/RempahRia" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-accentPurple hover:bg-accentPink px-6 py-3 rounded-lg transition-colors">
+                    View Repository <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Modal: Depo Material -->
-    <div id="modal-depo" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-[#0B0E14] border border-gray-800 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl">
-            <button onclick="closeModal('modal-depo')" class="absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 rounded-full p-2 text-white z-10">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="modal-depo" class="opacity-0 pointer-events-none fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 transition-all duration-300 backdrop-blur-sm">
+        <div class="bg-[#0B0D1E] border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl transform scale-95 transition-transform duration-300" id="modal-depo-content">
+            <button onclick="closeModal('modal-depo')" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 rounded-full w-8 h-8 flex items-center justify-center text-white z-10 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-            <img src="Screenshot 2026-09-29 125324.jpg" class="w-full h-64 object-cover object-top">
+            <img src="Screenshot 2026-09-29 125324.jpg" class="w-full h-64 object-cover object-top border-b border-white/5">
             <div class="p-8">
-                <h2 class="text-2xl font-bold mb-2">Depo Material (PT Tunas Baja Nindia Perkasa)</h2>
-                <p class="text-pink-400 mb-6 font-medium">Web Developer (B2B E-Commerce)</p>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                <h2 class="text-2xl font-bold mb-2 text-white">Depo Material</h2>
+                <p class="text-accentBlue mb-6 font-medium text-sm">Web Developer (B2B E-Commerce)</p>
+                <p class="text-gray-300 text-sm leading-relaxed mb-8">
                     Sistem pemesanan (Point of Sales) terintegrasi berbasis web untuk mendigitalkan proses transaksi pemesanan besi baja dan manajemen inventaris. Membantu efisiensi operasional dan kalkulasi harga secara real-time berdasarkan lokasi proyek klien.
                 </p>
-                <div class="flex gap-4">
-                    <a href="[https://depomaterial.com](https://depomaterial.com)" target="_blank" class="bg-pink-600 hover:bg-pink-700 px-6 py-2 rounded-lg text-sm font-semibold transition">Visit Website</a>
-                </div>
+                <a href="https://depomaterial.com" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-accentBlue hover:bg-blue-600 px-6 py-3 rounded-lg transition-colors">
+                    Visit Website <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Modal: BRIDA -->
-    <div id="modal-brida" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-[#0B0E14] border border-gray-800 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl">
-            <button onclick="closeModal('modal-brida')" class="absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 rounded-full p-2 text-white z-10">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="modal-brida" class="opacity-0 pointer-events-none fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 transition-all duration-300 backdrop-blur-sm">
+        <div class="bg-[#0B0D1E] border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl transform scale-95 transition-transform duration-300" id="modal-brida-content">
+            <button onclick="closeModal('modal-brida')" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 rounded-full w-8 h-8 flex items-center justify-center text-white z-10 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-            <img src="Screenshot 2026-09-29 124853.jpg" class="w-full h-64 object-cover object-top">
+            <img src="Screenshot 2026-09-29 124853.jpg" class="w-full h-64 object-cover object-top border-b border-white/5">
             <div class="p-8">
-                <h2 class="text-2xl font-bold mb-2">BRIDA Kota Semarang</h2>
-                <p class="text-blue-400 mb-6 font-medium">Government Portal Developer</p>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                <h2 class="text-2xl font-bold mb-2 text-white">BRIDA Kota Semarang</h2>
+                <p class="text-accentPurple mb-6 font-medium text-sm">Government Portal Developer</p>
+                <p class="text-gray-300 text-sm leading-relaxed mb-8">
                     Pengembangan platform layanan publik berbasis web untuk Badan Riset dan Inovasi Daerah Kota Semarang. Sistem ini mempercepat diseminasi berita instansi, publikasi riset, kompetisi inovasi daerah, serta mendukung standar e-Government dengan keamanan dan arsitektur data yang optimal.
                 </p>
-                <div class="flex gap-4">
-                    <a href="[https://www.brida.semarangkota.go.id](https://www.brida.semarangkota.go.id)" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg text-sm font-semibold transition">Visit Website</a>
-                </div>
+                <a href="https://www.brida.semarangkota.go.id" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-accentPurple hover:bg-purple-700 px-6 py-3 rounded-lg transition-colors">
+                    Visit Website <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Modal: Hukrim -->
-    <div id="modal-hukrim" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-[#0B0E14] border border-gray-800 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl">
-            <button onclick="closeModal('modal-hukrim')" class="absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 rounded-full p-2 text-white z-10">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="modal-hukrim" class="opacity-0 pointer-events-none fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 transition-all duration-300 backdrop-blur-sm">
+        <div class="bg-[#0B0D1E] border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl transform scale-95 transition-transform duration-300" id="modal-hukrim-content">
+            <button onclick="closeModal('modal-hukrim')" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 rounded-full w-8 h-8 flex items-center justify-center text-white z-10 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-            <img src="Screenshot 2026-09-29 125144.jpg" class="w-full h-64 object-cover object-top">
+            <img src="Screenshot 2026-09-29 125144.jpg" class="w-full h-64 object-cover object-top border-b border-white/5">
             <div class="p-8">
-                <h2 class="text-2xl font-bold mb-2">Hukrim Nusantara</h2>
-                <p class="text-red-400 mb-6 font-medium">Web Developer (News Portal)</p>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                <h2 class="text-2xl font-bold mb-2 text-white">Hukrim Nusantara</h2>
+                <p class="text-orange-400 mb-6 font-medium text-sm">Web Developer (News Portal)</p>
+                <p class="text-gray-300 text-sm leading-relaxed mb-8">
                     Merancang dan mengembangkan portal media online yang tajam dan responsif. Memiliki integrasi CMS yang memudahkan jurnalis untuk merilis dan mengatur liputan terkini terkait isu Hukum dan Kriminalitas dengan antarmuka baca yang bersih.
                 </p>
-                <div class="flex gap-4">
-                    <a href="[https://hukrimnusantara.com](https://hukrimnusantara.com)" target="_blank" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg text-sm font-semibold transition">Visit Website</a>
-                </div>
+                <a href="https://hukrimnusantara.com" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg transition-colors">
+                    Visit Website <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
             </div>
         </div>
     </div>
 
     <script>
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('hidden');
-            // Sedikit delay untuk trigger animasi transisi opacity di Tailwind
+        // Script for handling Modals
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = document.getElementById(modalId + '-content');
+            
+            modal.classList.add('modal-active');
+            // Timeout to allow display block to process before scale transition
             setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.classList.add('opacity-100');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
             }, 10);
+            
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('opacity-100');
-            modal.classList.add('opacity-0');
-            // Tunggu transisi selesai sebelum di-hide sepenuhnya
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = document.getElementById(modalId + '-content');
+            
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            modal.classList.remove('modal-active');
+            
+            // Restore body scrolling
+            document.body.style.overflow = 'auto';
         }
 
-        // Tutup modal jika user klik area luar (background hitam)
+        // Close modal when clicking outside of it
         window.onclick = function(event) {
-            if (event.target.classList.contains('fixed')) {
+            if (event.target.classList.contains('fixed') && event.target.id.startsWith('modal-')) {
                 closeModal(event.target.id);
             }
         }
